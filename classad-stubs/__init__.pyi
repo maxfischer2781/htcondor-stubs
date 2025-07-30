@@ -1,4 +1,12 @@
-from typing import Any, overload, Literal as TpLiteral, Iterator, TextIO, Callable
+from typing import (
+    Any,
+    overload,
+    Literal as TpLiteral,
+    Iterator,
+    TextIO,
+    Callable,
+    ClassVar,
+)
 from warnings import deprecated
 import enum
 import datetime
@@ -6,8 +14,8 @@ import datetime
 class Value(enum.IntEnum):
     Error = 1
     Undefined = 2
-    names: dict[str, Value]
-    values: dict[int, Value]
+    names: ClassVar[dict[str, Value]]
+    values: ClassVar[dict[int, Value]]
 
 # for typing convenience
 type ERROR = TpLiteral[Value.Error]
@@ -153,8 +161,8 @@ class Parser(enum.IntEnum):
     Auto = 1
     Old = 2
     New = 3
-    names: dict[str, Parser]
-    values: dict[int, Parser]
+    names: ClassVar[dict[str, Parser]]
+    values: ClassVar[dict[int, Parser]]
 
 def version() -> str: ...
 
