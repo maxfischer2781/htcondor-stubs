@@ -6,6 +6,7 @@ from typing import (
     TextIO,
     Callable,
     ClassVar,
+    Mapping,
     Iterable,
 )
 from warnings import deprecated
@@ -97,28 +98,21 @@ class ExprTree[V: PyValue[Any]]:
 
 class ClassAd[V: PyValue[Any]]:
     @overload
-    def __init__[DV: PyValue[Any]](self: ClassAd[DV], input: dict[str, DV]) -> None: ...
+    def __init__[CV: PyValue[Any]](self: ClassAd[CV], input: ClassAd[CV]) -> None: ...
     @overload
-    def __init__[DEV: PyValue[Any]](
-        self: ClassAd[DEV | _EU], input: dict[str, ExprTree[DEV]]
+    def __init__[DV: PyValue[Any]](
+        self: ClassAd[DV],
+        input: (
+            Mapping[str, DV | ExprTree[DV]] | Iterable[tuple[str, DV | ExprTree[DV]]]
+        ),
     ) -> None: ...
     @overload
-    def __init__[DCV: PyValue[Any]](
-        self: ClassAd[dict[str, DCV | _EU]], input: dict[str, ClassAd[DCV]]
-    ) -> None: ...
-    @overload
-    def __init__[DV: PyValue[Any], DEV: PyValue[Any]](
-        self: ClassAd[DV | DEV | _EU], input: dict[str, DV | ExprTree[DEV]]
-    ) -> None: ...
-    @overload
-    def __init__[DV: PyValue[Any], DCV: PyValue[Any]](
-        self: ClassAd[DV | dict[str, DCV | _EU]],
-        input: dict[str, DV | ClassAd[DCV]],
-    ) -> None: ...
-    @overload
-    def __init__[DV: PyValue[Any], DEV: PyValue[Any], DCV: PyValue[Any]](
-        self: ClassAd[DV | DEV | _EU | dict[str, DCV | _EU]],
-        input: dict[str, DV | ExprTree[DEV] | ClassAd[DCV]],
+    def __init__[DV: PyValue[Any], DDV: PyValue[Any]](
+        self: ClassAd[DV | dict[str, DDV]],
+        input: (
+            Mapping[str, DV | ExprTree[DV] | Mapping[str, ClassAd[DDV]]]
+            | Iterable[tuple[str, DV | ExprTree[DV]] | Mapping[str, ClassAd[DDV]]]
+        ),
     ) -> None: ...
     @overload
     def __init__(self: ClassAd[Any], input: str) -> None: ...
