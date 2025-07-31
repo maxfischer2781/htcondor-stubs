@@ -147,12 +147,22 @@ class ClassAd[V: PyValue[Any]]:
     def setdefault(self, key: str, default: None = None) -> V | UNDEFINED: ...
     @overload
     def setdefault(self, key: str, default: V) -> V: ...
+    # same types as __init__
     @overload
     def update[CV: PyValue[Any]](self: ClassAd[CV], other: ClassAd[CV], /) -> None: ...
     @overload
     def update[DV: PyValue[Any]](
         self: ClassAd[DV],
         other: dict[str, DV | ExprTree[DV]] | Iterable[tuple[str, DV | ExprTree[DV]]],
+        /,
+    ) -> None: ...
+    @overload
+    def update[DV: PyValue[Any], DDV: PyValue[Any]](
+        self: ClassAd[DV | dict[str, DDV]],
+        other: (
+            Mapping[str, DV | ExprTree[DV] | Mapping[str, ClassAd[DDV]]]
+            | Iterable[tuple[str, DV | ExprTree[DV]] | Mapping[str, ClassAd[DDV]]]
+        ),
         /,
     ) -> None: ...
 
