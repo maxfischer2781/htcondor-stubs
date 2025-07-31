@@ -96,6 +96,7 @@ class ExprTree[V: PyValue[Any]]:
         self, scope: ClassAd[Any] | None, target: ClassAd[Any] | None
     ) -> ExprTree[V]: ...
 
+# Not a Mapping/MutableMapping!
 class ClassAd[V: PyValue[Any]]:
     @overload
     def __init__[CV: PyValue[Any]](self: ClassAd[CV], input: ClassAd[CV]) -> None: ...
