@@ -212,3 +212,4 @@ class BulkQueryIterator(Iterator[ClassAd[Any]]): ...
 # TODO: Type these
 type Submit = Any
 type QueueItemsIterator = Any
+type SubmitResult = Any
