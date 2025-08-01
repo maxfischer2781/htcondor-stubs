@@ -1,4 +1,13 @@
-from typing import Any, ClassVar, Callable, Literal, SupportsInt
+from typing import (
+    Any,
+    ClassVar,
+    Callable,
+    Literal,
+    SupportsInt,
+    overload,
+    Iterator,
+    Sequence,
+)
 from warnings import deprecated
 import enum
 
@@ -118,7 +127,7 @@ class Schedd:
         limit: int = -1,
         opts: QueryOpts = QueryOpts.Default,
         name: str | None = None,
-    ) -> Any: ...
+    ) -> QueryIterator: ...
     def act(
         self,
         action: JobAction,
@@ -132,3 +141,75 @@ class Schedd:
         value: str | ExprTree[Any],
         flags: TransactionFlags | Literal[0] = 0,
     ) -> SupportsInt: ...
+    def history(
+        self,
+        constraint: str | ExprTree[Any] | None,
+        projection: list[str],
+        match: int = -1,
+        since: int | str | ExprTree[Any] | None = None,
+    ) -> HistoryIterator: ...
+    def jobEpochHistory(
+        self,
+        constraint: str | ExprTree[Any] | None,
+        projection: list[str],
+        match: int = -1,
+        since: int | str | ExprTree[Any] | None = None,
+    ) -> HistoryIterator: ...
+    @overload
+    @deprecated("use .submit with a Submit object")
+    def submit(
+        self,
+        description: ClassAd[Any],
+        count: int = 1,
+        spool: bool = False,
+        ad_results: list[ClassAd[Any]] | None = None,
+    ) -> int: ...
+    @overload
+    def submit(
+        self,
+        description: Submit,
+        count: int = 1,
+        spool: bool = False,
+        *,
+        itemdata: QueueItemsIterator | None = None,
+    ) -> SubmitResult: ...
+    def submitMany(
+        self,
+        cluster_ad: ClassAd[Any],
+        proc_ads: list[tuple[ClassAd[Any], int]],
+        spool: bool = False,
+        ad_results: list[ClassAd[Any]] | None = None,
+    ) -> int: ...
+    def spool(self, jobs: list[ClassAd[Any]]) -> None: ...
+    def retrieve(self, job_spec: str | list[ClassAd[Any]]) -> None: ...
+    def refreshGSIProxy(
+        self, cluster: int, proc: int, proxy_filename: str, lifetime: int
+    ) -> int: ...
+    def reschedule(self) -> None: ...
+    def export_jobs(
+        self,
+        job_spec: str | list[str] | ExprTree[Any],
+        export_dir: str,
+        new_spool_dir: str,
+    ) -> ClassAd[Any]: ...
+    def import_exported_job_results(self, import_dir: str) -> ClassAd[Any]: ...
+    def unexport_jobs(
+        self, job_spec: str | list[str] | ExprTree[Any]
+    ) -> ClassAd[Any]: ...
+
+class HistoryIterator(Iterator[ClassAd[Any]]): ...
+
+class QueryIterator(Iterator[ClassAd[Any]]):
+    def nextAdsNonBlocking(self) -> list[ClassAd[Any]]: ...
+    def tag(self) -> str: ...
+    def watch(self) -> int: ...
+
+def poll(
+    queries: list[QueryIterator], timeout_ms: int = 20000
+) -> BulkQueryIterator: ...
+
+class BulkQueryIterator(Iterator[ClassAd[Any]]): ...
+
+# TODO: Type these
+type Submit = Any
+type QueueItemsIterator = Any
