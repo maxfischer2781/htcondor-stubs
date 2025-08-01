@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "htcondor-stubs-contrib"
+version = "23.0.0"
+license = "MIT"
+authors = [
+  { name="Max Kühn", email="max.kuehn@kit.edu" },
+]
+description = "Type annotations for the HTCondor Python API"
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.6"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "black",
+    "mypy",
+    "pyright",
+]
