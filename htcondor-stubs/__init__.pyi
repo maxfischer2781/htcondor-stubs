@@ -6,7 +6,6 @@ from typing import (
     SupportsInt,
     overload,
     Iterator,
-    Sequence,
 )
 from warnings import deprecated
 import enum
