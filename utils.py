@@ -3,6 +3,7 @@ from typing import Any, Protocol, ClassVar
 
 class HTCondorEnum(Protocol):
     name: str
+    names: "ClassVar[dict[str, HTCondorEnum]]"
     values: "ClassVar[dict[int, HTCondorEnum]]"
 
 
