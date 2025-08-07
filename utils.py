@@ -1,4 +1,5 @@
-from typing import Any, Protocol, ClassVar
+from typing import Protocol, ClassVar
+from types import ModuleType
 
 
 class HTCondorEnum(Protocol):
@@ -17,13 +18,13 @@ def format_enum(enum: "type[HTCondorEnum]") -> str:
     return "\n".join(body)
 
 
-def format_exception(exception: BaseException) -> str:
+def format_exception(exception: "type[BaseException]") -> str:
     """Format an HTCondor Exception class for type hinting"""
     bases = ",".join(base.__qualname__ for base in exception.__bases__)
     return f"class {exception.__qualname__}({bases}): ..."
 
 
-def get_exceptions(module: "Any") -> "list[type[BaseException]]":
+def get_exceptions(module: "ModuleType") -> "list[type[BaseException]]":
     """Get all exceptions of a module"""
     return [
         c
