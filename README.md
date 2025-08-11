@@ -7,3 +7,12 @@ Coverage of stubs:
 
 - `classad`: Everything as per docs
 - `htcondor`: `Collector`, `Schedd` and corresponding types/functions
+
+## Installation
+
+If you have a virtual environment used for development and type checking (e.g. in VSCode) simply install this module into it:
+
+    # release version from pypi
+    (venv) ~$ python -m pip install htcondor-stubs-contrib
+    # dev version from github
+    (venv) ~$ python -m pip install git+https://github.com/maxfischer2781/htcondor-stubs.git@main
