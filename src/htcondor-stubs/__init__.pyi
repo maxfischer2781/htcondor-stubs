@@ -210,6 +210,17 @@ def poll(
 
 class BulkQueryIterator(Iterator[ClassAd[Any]]): ...
 
+class JobStatus(enum.IntEnum):
+    IDLE = 1
+    RUNNING = 2
+    REMOVED = 3
+    COMPLETED = 4
+    HELD = 5
+    TRANSFERRING_OUTPUT = 6
+    SUSPENDED = 7
+
+# Submitting Jobs
+
 # TODO: Type these
 type Submit = Any
 type QueueItemsIterator = Any
