@@ -86,6 +86,8 @@ class ExprTree[V: _PyValue]:
 # -- ClassAd
 
 class ClassAd[V: _PyValue](MutableMapping[str, _EoV[V]]):
+    """A mapping from strings to :py:class:`~.ExprTree` or Python values"""
+
     @overload
     def __init__(self: ClassAd[Any], input: None = None) -> None: ...
     @overload
