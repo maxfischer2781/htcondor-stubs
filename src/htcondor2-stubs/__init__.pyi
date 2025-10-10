@@ -263,6 +263,9 @@ class AdType(enum.IntEnum):
     Slot = 24
     StartDaemon = 25
 
+# undocumented alias in htcondor2, likely for backwards compatibility
+type AdTypes = AdType
+
 class CompletionType(enum.IntEnum):
     Nothing = 0
     Resume = 1
