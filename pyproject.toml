@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "htcondor-stubs-contrib"
-version = "23.0.0"
+version = "25.0.0"
 license = "MIT"
 authors = [
   { name="Max Kühn", email="max.kuehn@kit.edu" },
