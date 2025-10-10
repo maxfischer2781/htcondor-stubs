@@ -263,9 +263,6 @@ class AdType(enum.IntEnum):
     Slot = 24
     StartDaemon = 25
 
-# undocumented alias in htcondor2, likely for backwards compatibility
-type AdTypes = AdType
-
 class CompletionType(enum.IntEnum):
     Nothing = 0
     Resume = 1
@@ -452,3 +449,12 @@ class TransactionFlag(enum.IntEnum):
     NonDurable = 1
     SetDirty = 4
     ShouldLog = 8
+
+# undocumented aliases in htcondor2 for backwards compatibility
+type AdTypes = AdType
+type CredTypes = CredType
+type DaemonCommands = DaemonCommand
+type DaemonTypes = DaemonType
+type DrainTypes = DrainType
+type QueryOpts = QueryOpt
+type TransactionFlags = TransactionFlag
