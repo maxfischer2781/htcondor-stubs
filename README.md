@@ -6,7 +6,7 @@ This repo contains experimental [type stubs](https://typing.python.org/en/latest
 Coverage of stubs:
 
 - Mostly complete [HTCondor 24 bindings](https://htcondor.readthedocs.io/en/24.x/apis/python-bindings/) `classad` and `htcondor`
-- Experimental [HTCondor 25 bindings](https://htcondor.readthedocs.io/en/25.x/apis/python-bindings/) `classad2`
+- For [HTCondor 25 bindings](https://htcondor.readthedocs.io/en/25.x/apis/python-bindings/) complete `classad2` and experimental `htcondor2`
 
 ## Installation
 
