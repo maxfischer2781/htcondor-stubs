@@ -4,15 +4,15 @@ import enum
 
 # -- placeholders
 
-type CredCheck = Any
-type Credd = Any
-type JobEvent = Any
-type JobEventLog = Any
-type Schedd = Any
-type Startd = Any
-type Submit = Any
-type SubmitResult = Any
-type DAGMan = Any
+CredCheck = Any
+Credd = Any
+JobEvent = Any
+JobEventLog = Any
+Schedd = Any
+Startd = Any
+Submit = Any
+SubmitResult = Any
+DAGMan = Any
 
 # -- functions and classes
 
@@ -451,10 +451,10 @@ class TransactionFlag(enum.IntEnum):
     ShouldLog = 8
 
 # undocumented aliases in htcondor2 for backwards compatibility
-type AdTypes = AdType
-type CredTypes = CredType
-type DaemonCommands = DaemonCommand
-type DaemonTypes = DaemonType
-type DrainTypes = DrainType
-type QueryOpts = QueryOpt
-type TransactionFlags = TransactionFlag
+AdTypes = AdType
+CredTypes = CredType
+DaemonCommands = DaemonCommand
+DaemonTypes = DaemonType
+DrainTypes = DrainType
+QueryOpts = QueryOpt
+TransactionFlags = TransactionFlag
